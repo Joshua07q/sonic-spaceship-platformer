@@ -149,7 +149,7 @@ config = {
     user_canvas : 0,
     user_canvas_managed : 0,
     gui_divider : 2,
-    ume_block : 1,
+    ume_block : 0,
     can_close : 0,
     archive : "jk",
     gui_debug : 2,
@@ -205,12 +205,13 @@ function show_infobox() {
         }
 
         #infobox {
-            position: fixed; /* center relative to viewport */
-            background: green;
-            color: blue;
+            position: fixed;
+            background: #1a1a3a;
+            color: #ff8800;
             font-weight: bold;
-            padding: 12px 24px;
- /*           display: none; */
+            padding: 16px 30px;
+            border-radius: 10px;
+            font-size: 18px;
             z-index: 999999;
         }
         div.emscripten { text-align: center; }
@@ -240,7 +241,7 @@ function show_infobox() {
             font-family: arial;
             margin: 0;
             padding: none;
-            background-color:powderblue;
+            background-color: #0a0a1a;
         }
 
         .topright{
@@ -290,12 +291,14 @@ function show_infobox() {
 
 <body>
 
-    <div id="transfer" align=center>
-<!--        <div class="spinner" id='spinner'></div> -->
-        <div class="emscripten" id="status">Downloading...</div>
+    <div id="transfer" align=center style="color:#00aaff; padding-top:30vh; font-size:24px;">
+        <div style="font-size:42px; font-weight:bold; color:#ff8800;">SONIC SPACESHIP</div>
+        <div style="margin:10px 0; color:#88bbff;">THE ASTRAL CARRIER</div>
+        <div class="emscripten" id="status" style="color:#aaa; margin:20px;">Loading game engine...</div>
         <div class="emscripten">
-            <progress value="0" max="100" id="progress"></progress>
+            <progress value="0" max="100" id="progress" style="width:260px; height:24px;"></progress>
         </div>
+        <div style="color:#666; margin-top:20px; font-size:14px;">First load downloads ~15MB runtime</div>
     </div>
 
 
@@ -415,6 +418,24 @@ frameborder="1"
     function info_inline(data){
         document.getElementById("info").innerHTML = data
     }
+
+    // Auto-engage user media on first interaction (or immediately)
+    function autoEngage() {
+        if (window.MM && !window.MM.UME) {
+            try { window.MM.UME = 1; } catch(e) {}
+        }
+        // Create and resume audio context to satisfy browser policies
+        try {
+            var ctx = new (window.AudioContext || window.webkitAudioContext)();
+            ctx.resume();
+        } catch(e) {}
+        document.removeEventListener('touchstart', autoEngage);
+        document.removeEventListener('click', autoEngage);
+    }
+    document.addEventListener('touchstart', autoEngage, {once: true});
+    document.addEventListener('click', autoEngage, {once: true});
+    // Also try immediately after a short delay
+    setTimeout(autoEngage, 2000);
 
     function info_online(url) {
         // display info about current APK

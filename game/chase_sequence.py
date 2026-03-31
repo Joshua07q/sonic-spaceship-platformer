@@ -149,8 +149,8 @@ class ChaseManager:
 
     def __init__(self, chase_config):
         self.config = chase_config
-        # Trigger early so player sees the mech quickly
-        self.trigger_x = min(chase_config.get("trigger_x", 20), 8) * 48
+        # Trigger almost immediately
+        self.trigger_x = 4 * 48
         self.mega_threat = MegaThreat(chase_config)
         self.active = False
         self.started = False

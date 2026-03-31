@@ -15,9 +15,9 @@ class Camera:
         self.lock_rect = None
         self.auto_scroll = False
         self.auto_scroll_speed = 0.0
-        self.look_ahead = 80
-        self.deadzone_y = 100
-        self.smooth_speed = 0.08
+        self.look_ahead = 150
+        self.deadzone_y = 60
+        self.smooth_speed = 0.18  # much snappier camera
         self.shake_timer = 0
         self.shake_amplitude = 0
         self.shake_offset_x = 0

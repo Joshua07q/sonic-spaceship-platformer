@@ -9,35 +9,35 @@ SCREEN_HEIGHT = 720
 FPS = 60
 TILE_SIZE = 48
 
-# Physics
-GRAVITY = 0.65
-MAX_FALL_SPEED = 14
-FRICTION = 0.88
+# Physics — FAST, snappy, arcade feel
+GRAVITY = 1.1
+MAX_FALL_SPEED = 18
+FRICTION = 0.82
 
-# Sonic
-SONIC_WALK_SPEED = 4.5
-SONIC_RUN_SPEED = 9.0
-SONIC_SPRINT_SPEED = 14.0
-SONIC_JUMP_FORCE = -13.5
-SONIC_WALL_SLIDE_SPEED = 2.0
-SONIC_PUNCH_DAMAGE = 2
-SONIC_PUNCH_RANGE = 52
-SONIC_PUNCH_COOLDOWN = 300
-SONIC_SPRINT_THRESHOLD = 2000  # ms of running before sprint
+# Sonic — FAST
+SONIC_WALK_SPEED = 7.0
+SONIC_RUN_SPEED = 13.0
+SONIC_SPRINT_SPEED = 18.0
+SONIC_JUMP_FORCE = -16.5
+SONIC_WALL_SLIDE_SPEED = 3.0
+SONIC_PUNCH_DAMAGE = 3
+SONIC_PUNCH_RANGE = 90
+SONIC_PUNCH_COOLDOWN = 200
+SONIC_SPRINT_THRESHOLD = 800
 
-# Tails
-TAILS_WALK_SPEED = 4.0
-TAILS_RUN_SPEED = 7.5
-TAILS_JUMP_FORCE = -12.0
-TAILS_FLY_FORCE = -5.0
-TAILS_FLY_DURATION = 3000
-TAILS_FLY_COOLDOWN = 5000
-TAILS_TAIL_WHIP_DAMAGE = 1
-TAILS_TAIL_WHIP_RANGE = 44
+# Tails — also fast
+TAILS_WALK_SPEED = 6.5
+TAILS_RUN_SPEED = 11.0
+TAILS_JUMP_FORCE = -15.0
+TAILS_FLY_FORCE = -7.0
+TAILS_FLY_DURATION = 4000
+TAILS_FLY_COOLDOWN = 3000
+TAILS_TAIL_WHIP_DAMAGE = 2
+TAILS_TAIL_WHIP_RANGE = 80
 
-# Enemies
-SMALL_ENEMY_HP = 2
-MEDIUM_ENEMY_HP = 5
+# Enemies — die faster
+SMALL_ENEMY_HP = 1
+MEDIUM_ENEMY_HP = 3
 BOSS_HP_MULTIPLIER = 20
 
 # Rings & Lives
@@ -142,11 +142,11 @@ BOSS_NAMES = {
 
 # Difficulty curve per world
 DIFFICULTY = {
-    1: {"enemy_count": (5, 8), "enemy_speed": 1.0, "chase_speed": 4.0, "boss_hp": 20, "ring_density": 1.2},
-    2: {"enemy_count": (8, 12), "enemy_speed": 1.3, "chase_speed": 5.5, "boss_hp": 40, "ring_density": 1.0},
-    3: {"enemy_count": (10, 15), "enemy_speed": 1.5, "chase_speed": 6.5, "boss_hp": 60, "ring_density": 0.85},
-    4: {"enemy_count": (12, 18), "enemy_speed": 1.8, "chase_speed": 7.5, "boss_hp": 80, "ring_density": 0.7},
-    5: {"enemy_count": (15, 20), "enemy_speed": 2.0, "chase_speed": 9.0, "boss_hp": 100, "ring_density": 0.55},
+    1: {"enemy_count": (5, 8), "enemy_speed": 1.5, "chase_speed": 8.0, "boss_hp": 12, "ring_density": 1.4},
+    2: {"enemy_count": (8, 12), "enemy_speed": 1.8, "chase_speed": 10.0, "boss_hp": 20, "ring_density": 1.2},
+    3: {"enemy_count": (10, 15), "enemy_speed": 2.0, "chase_speed": 12.0, "boss_hp": 30, "ring_density": 1.0},
+    4: {"enemy_count": (12, 18), "enemy_speed": 2.3, "chase_speed": 14.0, "boss_hp": 40, "ring_density": 0.85},
+    5: {"enemy_count": (15, 20), "enemy_speed": 2.5, "chase_speed": 16.0, "boss_hp": 50, "ring_density": 0.7},
 }
 
 # Asset paths

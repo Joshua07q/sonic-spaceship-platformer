@@ -47,27 +47,27 @@ class TouchControls:
         self._setup_buttons()
 
     def _setup_buttons(self):
-        # D-pad (bottom-left)
-        pad_x = 100
-        pad_y = SCREEN_HEIGHT - 120
-        r = 38
+        # D-pad (bottom-left) — BIG for fat fingers
+        pad_x = 120
+        pad_y = SCREEN_HEIGHT - 130
+        r = 48
 
         self.buttons = [
-            TouchButton(pad_x - 60, pad_y, r, "<", pygame.K_LEFT, (100, 150, 255)),
-            TouchButton(pad_x + 60, pad_y, r, ">", pygame.K_RIGHT, (100, 150, 255)),
-            TouchButton(pad_x, pad_y - 55, r - 4, "^", pygame.K_UP, (100, 150, 255)),
-            TouchButton(pad_x, pad_y + 55, r - 4, "v", pygame.K_DOWN, (100, 150, 255)),
+            TouchButton(pad_x - 75, pad_y, r, "<", pygame.K_LEFT, (100, 150, 255)),
+            TouchButton(pad_x + 75, pad_y, r, ">", pygame.K_RIGHT, (100, 150, 255)),
+            TouchButton(pad_x, pad_y - 70, r, "^", pygame.K_UP, (100, 150, 255)),
+            TouchButton(pad_x, pad_y + 70, r, "v", pygame.K_DOWN, (100, 150, 255)),
         ]
 
-        # Action buttons (bottom-right)
-        act_x = SCREEN_WIDTH - 100
-        act_y = SCREEN_HEIGHT - 120
+        # Action buttons (bottom-right) — BIG
+        act_x = SCREEN_WIDTH - 130
+        act_y = SCREEN_HEIGHT - 130
 
         self.buttons.extend([
-            TouchButton(act_x + 50, act_y, 42, "JUMP", pygame.K_SPACE, (80, 220, 80)),
-            TouchButton(act_x - 30, act_y + 10, 34, "ATK", pygame.K_j, (220, 80, 80)),
-            TouchButton(act_x + 50, act_y - 70, 28, "RUN", pygame.K_LSHIFT, (220, 180, 50)),
-            TouchButton(SCREEN_WIDTH - 60, 50, 24, "II", pygame.K_ESCAPE, (180, 180, 180)),
+            TouchButton(act_x + 55, act_y, 52, "JUMP", pygame.K_SPACE, (80, 220, 80)),
+            TouchButton(act_x - 40, act_y, 44, "ATK", pygame.K_j, (220, 80, 80)),
+            TouchButton(act_x + 55, act_y - 85, 36, "RUN", pygame.K_LSHIFT, (220, 180, 50)),
+            TouchButton(SCREEN_WIDTH - 50, 45, 28, "||", pygame.K_ESCAPE, (180, 180, 180)),
         ])
 
         for b in self.buttons:

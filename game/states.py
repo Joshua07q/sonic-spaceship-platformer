@@ -272,6 +272,19 @@ class Game:
                     self.player.x += plat.dx
                     self.player.rect.x = int(self.player.x)
 
+        # AUTO-ATTACK: punch nearby enemies automatically (mobile-friendly)
+        if not self.player.dead and not self.player.attacking and self.player.attack_cooldown <= 0:
+            for enemy in self.enemies:
+                if enemy.alive and enemy.active:
+                    dx = abs(enemy.rect.centerx - self.player.rect.centerx)
+                    dy = abs(enemy.rect.centery - self.player.rect.centery)
+                    if dx < 100 and dy < 60:
+                        if hasattr(self.player, 'punch'):
+                            self.player.punch()
+                        elif hasattr(self.player, 'tail_whip'):
+                            self.player.tail_whip()
+                        break
+
         # Update enemies
         for enemy in self.enemies:
             if enemy.active:
@@ -340,6 +353,18 @@ class Game:
         if self.boss and self.state == GameState.BOSS_FIGHT:
             boss_solids = self.tilemap.get_solid_rects_near(self.boss.rect)
             self.boss.update(self.player.rect, boss_solids, dt_ms)
+
+            # AUTO-ATTACK boss when close and vulnerable
+            if (self.boss.alive and self.boss.vulnerable
+                    and not self.player.dead and not self.player.attacking
+                    and self.player.attack_cooldown <= 0):
+                dx = abs(self.boss.rect.centerx - self.player.rect.centerx)
+                dy = abs(self.boss.rect.centery - self.player.rect.centery)
+                if dx < 130 and dy < 80:
+                    if hasattr(self.player, 'punch'):
+                        self.player.punch()
+                    elif hasattr(self.player, 'tail_whip'):
+                        self.player.tail_whip()
 
             # Player attack on boss
             if self.player.attacking and self.player.attack_rect:
@@ -457,9 +482,14 @@ class Game:
         if self.player.dead and self.player.death_timer <= 0:
             if self.player.lives > 0:
                 self.player.respawn()
-                # Reset chase if applicable
+                # During chase: respawn ahead of camera, don't restart
                 if self.chase_manager and self.chase_manager.active:
-                    self._start_level()  # Restart the level
+                    safe_x = self.camera.x + 200
+                    safe_y = self.tilemap.pixel_height - 4 * 48
+                    self.player.x = safe_x
+                    self.player.y = safe_y
+                    self.player.rect.topleft = (int(safe_x), int(safe_y))
+                    self.player.vx = self.camera.auto_scroll_speed + 2
             else:
                 self.state = GameState.GAME_OVER
 

@@ -221,7 +221,7 @@ class Player:
             self.is_sprinting = False
 
         target_vx = move_dir * target_speed
-        self.vx += (target_vx - self.vx) * 0.15
+        self.vx += (target_vx - self.vx) * 0.35  # snappy, instant feel
 
         # Drop through platform
         self.dropping = False
